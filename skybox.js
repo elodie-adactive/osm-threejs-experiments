@@ -29,7 +29,7 @@ function doSkybox()
 
 // GROUND
     var geometry = new THREE.PlaneBufferGeometry( 100, 100 );
-    var planeMaterial = new THREE.MeshPhongMaterial( { color: 0xffdd99 } );
+    var planeMaterial = new THREE.MeshBasicMaterial( { color: 0xCCC7B8 } );
 
     var ground = new THREE.Mesh( geometry, planeMaterial );
 
