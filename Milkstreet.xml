@@ -1,0 +1,52 @@
+<way id="104210747" visible="true" version="5" changeset="23125246" timestamp="2014-06-24T16:59:08Z" user="wambag" uid="326503">
+    <nd ref="61340552"/>
+    <nd ref="61340585"/>
+    <nd ref="2931307001"/>
+    <nd ref="2931306700"/>
+    <nd ref="61363805"/>
+    <nd ref="61363807"/>
+    <nd ref="61363787"/>
+    <nd ref="61363788"/>
+    <nd ref="2930154461"/>
+    <nd ref="61363790"/>
+    <nd ref="61363792"/>
+    <nd ref="61350690"/>
+    <nd ref="61353031"/>
+    <nd ref="61516885"/>
+    <nd ref="61496641"/>
+    <nd ref="61510824"/>
+    <nd ref="1534933469"/>
+    <nd ref="1534933468"/>
+    <nd ref="61374187"/>
+    <nd ref="61374205"/>
+    <tag k="attribution" v="Office of Geographic and Environmental Information (MassGIS)"/>
+    <tag k="condition" v="fair"/>
+    <tag k="highway" v="secondary"/>
+    <tag k="history" v="Retrieved from v1"/>
+    <tag k="lanes" v="2"/>
+    <tag k="massgis:way_id" v="157930"/>
+    <tag k="name" v="Milk Street"/>
+    <tag k="oneway" v="yes"/>
+    <tag k="source" v="massgis_import_v0.1_20071008193615"/>
+    <tag k="width" v="14.6"/>
+</way>
+<way id="8642149" visible="true" version="8" changeset="23129622" timestamp="2014-06-24T20:47:43Z" user="wambag" uid="326503">
+<nd ref="2379615975"/>
+<nd ref="2931746448"/>
+<nd ref="61340628"/>
+<nd ref="61340626"/>
+<nd ref="2931746446"/>
+<nd ref="61340617"/>
+<nd ref="61340615"/>
+<nd ref="61567761"/>
+<nd ref="61340552"/>
+<tag k="attribution" v="Office of Geographic and Environmental Information (MassGIS)"/>
+<tag k="condition" v="fair"/>
+<tag k="highway" v="secondary"/>
+<tag k="history" v="Retrieved from v1"/>
+<tag k="lanes" v="2"/>
+<tag k="massgis:way_id" v="157930"/>
+<tag k="name" v="Milk Street"/>
+<tag k="source" v="massgis_import_v0.1_20071008193615"/>
+<tag k="width" v="14.6"/>
+</way>
