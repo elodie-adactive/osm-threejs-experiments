@@ -42,19 +42,17 @@ function drawBuildings (buildings,parent,color,extrudeAmount, elevation) {
         geoMesh.receiveShadow = false;
         var egh = new THREE.EdgesHelper( geoMesh, 0x666666 );
         egh.material.linewidth = 1;
-        scene.add( egh );
+        parent.add( egh );
         parent.add( geoMesh);
         console.log("create Building");
     });
 }
 
-function drawLanes (lanes,parent,color,extrudeAmount,elevation) {
-    var extrudeSettings = { amount: extrudeAmount,  bevelEnabled: false, steps: 1 };
-    var width = 2;
+function drawLanes (lanes,parent,color,width,elevation) {
+    var width = (width) ? width : 20.0;
     var elevation = (elevation) ? elevation : 0;
 
     var polygons = lanes.map(function(b) {
-        var width = 2;
         var position = b.nodes.map(function(n){return projection([n.lon, n.lat]);});
         width = (b.tags['width']) ? parseFloat(b.tags['width']) : width;
         var id = b._id;

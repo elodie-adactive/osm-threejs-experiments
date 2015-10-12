@@ -1,7 +1,7 @@
 /**
  * Created by elodie on 07/10/15.
  */
-var renderer, scene, camera, controls;
+var renderer, scene, camera, controls, parent;
 
 var width = 1920;
 var height = 1080;
@@ -26,10 +26,18 @@ var height = 1080;
 //var minlat = 42.35226;
 
 //BOSTON FINANCIAL DISTRICT + BOSTON COMMONS(quite complete)
-var minlon = -71.0841;
-var maxlat = 42.3630;
-var maxlon = -71.0504;
-var minlat = 42.3493;
+//var minlon = -71.0841;
+//var maxlat = 42.3630;
+//var maxlon = -71.0504;
+//var minlat = 42.3493;
+
+// MARSEILLE
+var minlon = 5.38965;
+var maxlat = 43.29404;
+var maxlon = 5.40650;
+var minlat = 43.28689;
+
+
 
 var bbox = [[
     //left, top
@@ -100,8 +108,6 @@ connection.bboxFromAPI(bbox, function(graph) {
         parent.castShadow = true;
         parent.position.y = 0;
         scene.add(parent);
-
-
         //controls.addEventListener( 'change', render ); // add this only if there is no animation loop (requestAnimationFrame)
 
         initRenderer(width,height, 0xcccccc);
@@ -114,6 +120,8 @@ connection.bboxFromAPI(bbox, function(graph) {
 
 
         var buildings = filterGraph(graph,'building', 'yes');
+        var hospitalsBuildings = filterGraph(graph,'building', 'hospital');
+
         var parksLeisure = filterGraph(graph,'leisure', 'park');
         var grassLeisure = filterGraph(graph,'landuse', 'grass');
         var gardensLeisure = filterGraph(graph,'leisure', 'garden');
@@ -125,10 +133,16 @@ connection.bboxFromAPI(bbox, function(graph) {
         var water = filterGraph(graph,'natural', 'water');
         var pedestrianZone = filterGraph(graph, 'area:highway', 'pedestrian');
 
+        var hospitals = filterGraph(graph, 'amenity', 'hospital');
+        var parkings = filterGraph(graph, 'amenity', 'parking');
+        var schools = filterGraph(graph, 'amenity', 'school');
+        var college = filterGraph(graph, 'amenity', 'college');
+
         //ROADS
         var primary = filterGraph(graph, 'highway', 'primary');
         var residential = filterGraph(graph, 'highway', 'residential');
         var secondary = filterGraph(graph, 'highway', 'secondary');
+        var unclassified = filterGraph(graph, 'highway', 'unclassified');
         var pedestrian = filterGraph(graph, 'highway', 'secondary_link');
         var footway = filterGraph(graph, 'highway', 'footway');
         var tertiary = filterGraph(graph, 'highway', 'tertiary');
@@ -136,6 +150,7 @@ connection.bboxFromAPI(bbox, function(graph) {
 
         //BUILDINGS
         drawBuildings(buildings,parent,0xC9C3AF,20,0);
+        drawBuildings(hospitalsBuildings,parent,0xC9C3AF,20,0);
 
         //PARKS
         drawLeisure(parksLeisure,parent,0xc8facc,1,1);
@@ -143,20 +158,26 @@ connection.bboxFromAPI(bbox, function(graph) {
         drawLeisure(pitchGroundLeisure,parent,0xcccccc, 1,1.2);
         drawLeisure(recreationGroundLeisure,parent,0xcccccc, 1,1.2);
         drawLeisure(cemetery,parent,0x90cb7c,1,1);
-        drawLeisure(grassLeisure,parent,0xcdeab0,1,2);
-        drawLeisure(gardensLeisure,parent,0x90cb7c,1,3);
-        drawLeisure(constructionLeisure,parent,0x333333,1,3);
-        drawLeisure(pedestrianZone,parent,0xAD7979,1,3);
+        drawLeisure(grassLeisure,parent,0xcdeab0,1,1.4);
+        drawLeisure(gardensLeisure,parent,0x90cb7c,1,1.4);
+        drawLeisure(constructionLeisure,parent,0x333333,1,1.4);
+        drawLeisure(pedestrianZone,parent,0xAD7979,1,1.4);
+        drawLeisure(schools,parent,0xD1DBB4,1,0.5);
+        drawLeisure(college,parent,0xD1DBB4,1,0.5);
+
+        //FLOOR SIGNAGE
+        drawLeisure(parkings,parent,0xAD7979,1,1);
+        drawLeisure(hospitals,parent,0xB4D1DB,1,0.5);
         //WATER
         drawLeisure(water, parent,0x3e7a8b,1,1.3);
 
         //ROADS
-        drawLanes(primary,parent,0xffffff,1,2,2);
-        drawLanes(residential,parent,0xffffff,1,2,2);
-        drawLanes(secondary,parent,0xffffff,1,2,2);
-        drawLanes(pedestrian,parent,0xffffff,1,2,2);
-        drawLanes(footway,parent,0xD6A394,1,2,2);
-        //drawLanes(tertiary,parent,0xcccccc,1,2,2);
+        drawLanes(primary,parent,0xffffff,150,2);
+        drawLanes(secondary,parent,0xffffff,150,2);
+        drawLanes(residential,parent,0xffffff,15,2);
+        drawLanes(pedestrian,parent,0xffffff,2,2);
+        drawLanes(footway,parent,0xD6A394,2,2);
+        drawLanes(unclassified,parent,0xffffff,15,2);
 
         var light = new THREE.PointLight( 0xffffff , 0.7);
         light.position.copy( camera.position );
@@ -177,3 +198,8 @@ connection.bboxFromAPI(bbox, function(graph) {
     setup();
     animate();
 });
+
+function getMap3DObject()
+{
+    return parent;
+}
